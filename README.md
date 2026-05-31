@@ -12,7 +12,7 @@ This project uses data from the Stack Overflow Developer Survey to build a machi
 - Model Evaluation
 - Model Serialization for Deployment
 
-The final model is built using XGBoost Regressor and integrated into a reusable Scikit-Learn pipeline.
+The final model is built using XGBoost Regressor
 
 ## Project Structure
 ```
