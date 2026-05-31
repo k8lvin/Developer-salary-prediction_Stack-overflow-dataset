@@ -76,8 +76,7 @@ Contains reusable data cleaning functions used throughout the project.
 2. Converting long education descriptions into simplified categories e.g. - Bachelor’s degree to Bachelor's
 3. Employment cleaning: Groups employment status into Full-time, Freelance/Self-employed, Student or Other.
 4. Language Feature Engineering : Converts programming language lists into counts. eg Python;SQL;JavaScript;HTML/CSS becomes 4
-5. Country Grouping : Keeps only the top 15 countries. All others become Other
-Automatic Feature Detection
+5. Country Grouping : Keeps only the top 15 countries. All others are converted to Other.
 6. Returning categorical_columns and numeric_columns for pipeline creation.
 
 ## evaluation.py
@@ -93,8 +92,7 @@ Contains utilities for measuring model performance.
 
 ## train.py
 contains end-to-end training script.
-
-Main function.
+### Main function.
 1. Load and Clean Data
 2. Save Processed Dataset
 3. Split Data
