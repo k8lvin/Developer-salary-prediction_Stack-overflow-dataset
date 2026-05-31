@@ -44,14 +44,13 @@ dev_salary_prediction/
 ```
 
 ## Target Variable:
-ConvertedCompYearly - This represents the respondent's annual compensation converted to USD.
-To improve model quality, salaries are filtered to >= 10000, <= 500000
+ConvertedCompYearly - represents the respondent's annual compensation converted to USD.
+
+- To improve model quality, salaries are filtered to >= 10000, <= 500000
 
 ## Exploratory Data Analysis (01_eda.ipynb)
-Purpose:
 The EDA notebook is responsible for understanding the dataset before modeling.
 
-### Tasks Performed
 - Loading raw survey data.
 - Exploring dataset dimensions.
 - Inspecting missing values.
@@ -63,8 +62,6 @@ The EDA notebook is responsible for understanding the dataset before modeling.
 
 ## Data Preprocessing Notebook (preprocessing.ipynb)
 Purpose is to prepare a cleaned dataset for machine learning.
-
-## Feature Selection
 ### Selected features:
 - Country
 - YearsCode
@@ -78,15 +75,14 @@ Contains reusable data cleaning functions used throughout the project.
 1. Removing missing salaries, unrealistic salary values and education Standardization
 2. Converting long education descriptions into simplified categories e.g. - Bachelor’s degree to Bachelor's
 3. Employment cleaning: Groups employment status into Full-time, Freelance/Self-employed, Student or Other.
-4. Language Feature Engineering : Converts programming language lists into counts. eg Python;SQL;JavaScript;HTML/CSS becomes 4.
+4. Language Feature Engineering : Converts programming language lists into counts. eg Python;SQL;JavaScript;HTML/CSS becomes 4
 5. Country Grouping : Keeps only the top 15 countries. All others become Other
 Automatic Feature Detection
 6. Returning categorical_columns and numeric_columns for pipeline creation.
 
 ## evaluation.py
 Contains utilities for measuring model performance.
-
-## Metrics Computed
+### Metrics Computed
 1. Mean Absolute Error (MAE)
 2. Root Mean Squared Error (RMSE)
 3. r2 Score
