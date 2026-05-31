@@ -1,6 +1,7 @@
 ## Developer Salary Prediction.
 
 This project uses data from the Stack Overflow Developer Survey to build a machine learning model capable of predicting a developer's annual salary based on demographic, educational, employment, and technical experience information
+
 [Stack Overflow](https://survey.stackoverflow.co/) - 2025 Dataset
 
 ## The project follows a complete machine learning workflow:
@@ -14,6 +15,7 @@ This project uses data from the Stack Overflow Developer Survey to build a machi
 The final model is built using XGBoost Regressor and integrated into a reusable Scikit-Learn pipeline.
 
 ## Project Structure
+
 dev_salary-prediction/
 │
 ├── data/
