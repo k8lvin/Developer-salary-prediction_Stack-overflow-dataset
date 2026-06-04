@@ -7,7 +7,7 @@ OUTPUTS:
 '''
 import os
 import sys
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
+from sklearn.preprocessing import StandardScaler, OneHotEncoder, TargetEncoder
 from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
@@ -16,7 +16,7 @@ from sklearn.model_selection import train_test_split
 import joblib
 import pandas as pd
 
-from preprocess import load_and_clean, get_feature_columns, TARGET
+from preprocess import load_and_clean, get_feature_columns, LOG_TARGET
 from evaluation import evaluate_model, plot_predictions,  print_observations
 
 # adding /src to path so we can import our modules
@@ -31,14 +31,16 @@ RANDOM_STATE = 42
 TEST_SIZE = 0.2
 
 XGBOOST_PARAMS = {
-    'n_estimators' : 300,
-    'max_depth' : 5,
-    'learning_rate' :0.05,
+    'n_estimators' : 600,
+    'max_depth' : 6,
+    'learning_rate' :0.03,
     'random_state' : RANDOM_STATE,
     'verbosity' : 0,
     'subsample' : 0.8,
     'colsample_bytree' : 0.8,
-    'tree_method' : 'hist' # makes execution fast for large datasets
+    'tree_method' : 'hist',  # makes execution fast for large datasets
+    'reg_alpha' : 0.05, #L1
+    'reg_lambda' : 1.0 #L2
 }
 
 def build_preprocessor(cat_cols: list, num_cols: list) -> ColumnTransformer:
@@ -61,7 +63,7 @@ def build_preprocessor(cat_cols: list, num_cols: list) -> ColumnTransformer:
     
     cat_pipeline = Pipeline([
     ('imputer', SimpleImputer(strategy='most_frequent')),
-    ('encoder', OneHotEncoder(drop='first', handle_unknown='ignore',sparse_output=False))
+    ('encoder', TargetEncoder(smooth='auto', target_type='continuous'))
     ])
     
     preprocesser = ColumnTransformer([
@@ -96,8 +98,8 @@ def main():
     print(f"preprocessed data saved to: {PROCESSED_DATA}\n \n")
     
     # 2. Split features and target
-    X =df.drop(columns = [TARGET])
-    y = df[TARGET]
+    X =df.drop(columns = [LOG_TARGET])
+    y = df[LOG_TARGET]
 
 
     cat_cols, num_cols = get_feature_columns(df)
@@ -135,6 +137,9 @@ def main():
     # Example prediction
     print('\n Sample prediction: \n')
     
+    '''
+    
+    
     sample =  pd.DataFrame([{
         'Country' : "Ukraine",
         'YearsCode' : 10.0,
@@ -148,6 +153,8 @@ def main():
     
     mae = test_metrics['mae']
     print(f"Predicted salary: ${pred:,.0f} +/- ${mae}")
+    
+    '''
     
     print("\n Training script complete. \n")
     
