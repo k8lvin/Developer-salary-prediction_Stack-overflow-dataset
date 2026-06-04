@@ -14,7 +14,7 @@ This project uses data from the Stack Overflow Developer Survey to build a machi
 The final model is built using XGBoost Regressor and integrated into a reusable Scikit-Learn pipeline.
 
 ## Project Structure
-dev_salary-prediction/
+```dev_salary-prediction/
 │
 ├── data/
 │   ├── raw/
@@ -39,7 +39,7 @@ dev_salary-prediction/
 │
 ├── requirements.txt
 └── README.md
-
+```
 ## Dataset
 The project uses the Stack Overflow Developer Survey dataset.
 
